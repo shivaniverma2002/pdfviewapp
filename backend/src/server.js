@@ -18,10 +18,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-app.use('/api/templates', templateRoutes);
-app.get("/", (req, res) => {
-  res.json({ success: "ok" });
+app.get('/', (req, res) => {
+  res.send('🚀 Backend is running successfully on Render!');
 });
+
+app.use('/api/templates', templateRoutes);
+
 
 // Health check route
 app.get('/api/health', (req, res) => {
