@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
@@ -19,6 +19,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use('/api/templates', templateRoutes);
+app.get("/api", (req, res) => {
+  res.json({ success: "ok" });
+});
 
 // Health check route
 app.get('/api/health', (req, res) => {
