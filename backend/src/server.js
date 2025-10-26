@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use('/api/templates', templateRoutes);
-app.get("/api", (req, res) => {
+app.get("/", (req, res) => {
   res.json({ success: "ok" });
 });
 
