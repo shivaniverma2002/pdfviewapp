@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://pdfviewapp.onrender.com';
+const API_BASE_URL = 'https://pdfviewapp.onrender.com/api';
 
 export const apiService = {
   // Get all templates from backend
