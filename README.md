@@ -12,29 +12,6 @@
 - Backend: Node.js, Express.js, MongoDB  
  
 
----
-
-## 📂 Project Structure
-pdfviewapp/
-│
-├── backend/
-│ ├── src/
-│ │ ├── config/
-│ │ ├── controller/
-│ │ ├── models/
-│ │ └── routes/
-│ ├── package.json
-│
-├── frontend/
-│ ├── src/
-│ │ ├── components/
-│ │ ├── api/
-│ │ ├── App.js
-│ │ └── index.js
-│ ├── package.json
-│
-└── README.md
-
 
  ⚙️ Setup Instructions
 
