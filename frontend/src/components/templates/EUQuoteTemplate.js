@@ -1,126 +1,195 @@
 import React from "react";
 
-const EUQuoteTemplate = ({ data }) => (
-  <div
-    className=" text-[13px] text-gray-800 leading-snug  rounded-md"
-    style={{
-      width: "180mm",
-      minHeight: "260mm",
-      padding: "15mm 20mm",
-      backgroundColor: "white",
-      margin: "auto",
-      fontFamily: "'Arial', sans-serif",
-    }}
-  >
-    {/* ===== Header Section ===== */}
-    <div className="flex justify-between border-b pb-3 mb-4">
-      {/* Left side - Company Info with Logo */}
-      <div className="flex flex-col">
-        <img
-          src={data.companyInfo?.logo || "/logo.png"}
-          alt="Company Logo"
-          style={{ width: "130px", marginBottom: "10px" }}
-        />
-        <h1 className="text-lg font-bold">{data.companyInfo?.name || "Ralakde Ltd"}</h1>
-        <p>{data.companyInfo?.address || "Company Address"}</p>
-        <p>VAT: {data.companyInfo?.vat || "N/A"}</p>
-        <p>{data.companyInfo?.phone || "+44 123 456 789"}</p>
-        <p>{data.companyInfo?.email || "info@ralakde.com"}</p>
-        <p>{data.companyInfo?.website || "www.ralakde.com"}</p>
-      </div>
+const EUQuoteTemplate = ({ data }) => {
+  if (!data) return null;
 
-      {/* Right side - Quote Info */}
-      <div className="text-right">
-        <h2 className="text-2xl font-bold text-green-700 border-b-2 border-green-600 pb-1 mb-1 inline-block">
-          QUOTE
-        </h2>
-        <p>Quote#: {data.quoteNumber || "N/A"}</p>
-        <p>Quote Date: {data.quoteDate || "N/A"}</p>
-        <p>Expiry Date: {data.expiryDate || "N/A"}</p>
-        <p>Reference#: {data.reference || "N/A"}</p>
-        <p>Sales Person: {data.salesPerson || "N/A"}</p>
-      </div>
-    </div>
-
-    {/* ===== Bill To Section ===== */}
-    <div className="mb-4">
-      <h3 className="font-semibold underline mb-1">Bill To</h3>
-      <p className="font-medium">{data.billTo?.companyName || "Client Company"}</p>
-      <p>{data.billTo?.address || "Client Address"}</p>
-    </div>
-
-    {/* ===== Items Table ===== */}
-    <table
-      className="w-full border border-collapse text-sm mb-6"
-      style={{ borderColor: "#d1d5db" }}
+  return (
+    <div
+      style={{
+        width: "210mm",
+        minHeight: "297mm",
+        background: "#fff",
+        color: "#000",
+        fontFamily: "Arial, sans-serif",
+        fontSize: "12px",
+        padding: "20mm 20mm",
+        lineHeight: "1.4",
+      }}
     >
-      <thead className="bg-gray-100 text-gray-700">
-        <tr>
-          <th className="border px-3 py-1">#</th>
-          <th className="border px-3 py-1 w-[35%]">Item & Description</th>
-          <th className="border px-3 py-1 text-right">Qty</th>
-          <th className="border px-3 py-1 text-right">Rate (£)</th>
-          <th className="border px-3 py-1 text-right">Amount (£)</th>
-        </tr>
-      </thead>
-      <tbody>
-        {data.items?.length > 0 ? (
-          data.items.map((item, i) => (
-            <tr key={i} className="even:bg-gray-50">
-              <td className="border px-3 py-1 text-center">{i + 1}</td>
-              <td className="border px-3 py-1">
-                <div className="font-semibold">{item.description || "Item"}</div>
-                <div className="text-gray-500 text-xs">{item.details || ""}</div>
-              </td>
-              <td className="border px-3 py-1 text-right">{item.quantity || 0}</td>
-              <td className="border px-3 py-1 text-right">
-                £{item?.rate ? item.rate.toFixed(2) : "0.00"}
-              </td>
-              <td className="border px-3 py-1 text-right">
-                £{item?.amount ? item.amount.toFixed(2) : "0.00"}
+      {/* ===== Header ===== */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+        {/* Left Company Info */}
+        <div style={{ width: "60%" }}>
+          {data.companyInfo?.logo && (
+            <img
+              src={data.companyInfo.logo}
+              alt="logo"
+              style={{ width: "150px", marginBottom: "10px" }}
+            />
+          )}
+          <div style={{ fontWeight: "bold", fontSize: "14px", marginBottom: "2px" }}>
+            {data.companyInfo?.name}
+          </div>
+          <div>{data.companyInfo?.address}</div>
+          <div>{data.companyInfo?.email}</div>
+          <div>{data.companyInfo?.website}</div>
+        </div>
+
+        {/* Right Quote Info */}
+        <div style={{ textAlign: "right", width: "40%" }}>
+          <div
+            style={{
+              fontSize: "26px",
+              color: "#003366",
+              fontWeight: "600",
+              marginBottom: "5px",
+            }}
+          >
+            Quote
+          </div>
+          <div style={{ fontWeight: "bold", marginBottom: "15px" }}>
+            Quote# {data.quoteNumber}
+          </div>
+
+          <table
+            style={{
+              width: "100%",
+              borderCollapse: "collapse",
+              fontSize: "12px",
+            }}
+          >
+            <tbody>
+              <tr>
+                <td style={{ padding: "2px 5px" }}>Quote Date :</td>
+                <td style={{ textAlign: "right" }}>{data.quoteDate}</td>
+              </tr>
+              <tr>
+                <td style={{ padding: "2px 5px" }}>Expiry Date :</td>
+                <td style={{ textAlign: "right" }}>{data.expiryDate}</td>
+              </tr>
+              <tr>
+                <td style={{ padding: "2px 5px" }}>Reference# :</td>
+                <td style={{ textAlign: "right" }}>{data.reference}</td>
+              </tr>
+              <tr>
+                <td style={{ padding: "2px 5px" }}>Sales person :</td>
+                <td style={{ textAlign: "right" }}>{data.salesPerson}</td>
+              </tr>
+              <tr>
+                <td style={{ padding: "2px 5px" }}>VAT No. :</td>
+                <td style={{ textAlign: "right" }}>{data.vatNumber}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* ===== Bill To ===== */}
+      <div style={{ marginTop: "25px", display: "flex", justifyContent: "space-between" }}>
+        <div style={{ width: "55%" }}>
+          <div style={{ fontWeight: "bold", textDecoration: "underline", marginBottom: "3px" }}>
+            Bill To
+          </div>
+          <div style={{ fontWeight: "bold" }}>{data.billTo?.companyName}</div>
+          <div>{data.billTo?.address}</div>
+          <div>{data.billTo?.country}</div>
+
+          <div style={{ marginTop: "10px" }}>
+            <div>Subject : {data.subject}</div>
+            <div>Description</div>
+          </div>
+        </div>
+      </div>
+
+      {/* ===== Items Table ===== */}
+      <table
+        style={{
+          width: "100%",
+          borderCollapse: "collapse",
+          marginTop: "20px",
+          fontSize: "12px",
+        }}
+      >
+        <thead>
+          <tr style={{ backgroundColor: "#003366", color: "#fff" }}>
+            <th style={{ padding: "6px", textAlign: "left", width: "5%" }}>#</th>
+            <th style={{ padding: "6px", textAlign: "left", width: "50%" }}>
+              Item & Description
+            </th>
+            <th style={{ padding: "6px", textAlign: "right", width: "10%" }}>Qty</th>
+            <th style={{ padding: "6px", textAlign: "right", width: "15%" }}>Rate</th>
+            <th style={{ padding: "6px", textAlign: "right", width: "20%" }}>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.items && data.items.length > 0 ? (
+            data.items.map((item, i) => (
+              <tr key={i} style={{ borderBottom: "1px solid #e5e7eb", verticalAlign: "top" }}>
+                <td style={{ padding: "6px", textAlign: "center" }}>{i + 1}</td>
+                <td style={{ padding: "6px" }}>
+                  <div style={{ fontWeight: "bold" }}>{item.description}</div>
+                  {item.details && (
+                    <div style={{ fontSize: "11px", color: "#555" }}>{item.details}</div>
+                  )}
+                </td>
+                <td style={{ padding: "6px", textAlign: "right" }}>{item.quantity}</td>
+                <td style={{ padding: "6px", textAlign: "right" }}>{item.rate}</td>
+                <td style={{ padding: "6px", textAlign: "right" }}>{item.amount}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="5" style={{ textAlign: "center", padding: "10px", color: "#888" }}>
+                No items available
               </td>
             </tr>
-          ))
-        ) : (
-          <tr>
-            <td colSpan="5" className="text-center text-gray-400 py-4">
-              No items available
-            </td>
-          </tr>
-        )}
-      </tbody>
-    </table>
+          )}
+        </tbody>
+      </table>
 
-    {/* ===== Totals Section ===== */}
-    <div className="flex justify-end text-sm mt-3">
-      <div className="text-right w-1/3">
-        <p>Subtotal: £{data?.subtotal ? data.subtotal.toFixed(2) : "0.00"}</p>
-        <p>Discount: £{data?.discount ? data.discount.toFixed(2) : "0.00"}</p>
-        <p className="font-bold text-lg text-green-700 border-t pt-1">
-          Total: £{data?.total ? data.total.toFixed(2) : "0.00"}
-        </p>
+      {/* ===== Totals ===== */}
+      <div style={{ width: "35%", marginLeft: "auto", marginTop: "15px" }}>
+        <table style={{ width: "100%", borderCollapse: "collapse" }}>
+          <tbody>
+            <tr>
+              <td style={{ padding: "5px" }}>Sub Total</td>
+              <td style={{ padding: "5px", textAlign: "right" }}>{data.total - data.discount}</td>
+            </tr>
+            <tr>
+              <td style={{ padding: "5px" }}>Discount</td>
+              <td style={{ padding: "5px", textAlign: "right" }}>{data.discount}</td>
+            </tr>
+            <tr
+              style={{
+                fontWeight: "bold",
+                backgroundColor: "#f0f0f0",
+                fontSize: "14px",
+              }}
+            >
+              <td style={{ padding: "6px" }}>Total</td>
+              <td style={{ padding: "6px", textAlign: "right" }}>£{data.total}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      {/* ===== Notes & Terms ===== */}
+      <div style={{ marginTop: "40px", pageBreakBefore: "always" }}>
+        {data.notes && (
+          <>
+            <div style={{ fontWeight: "bold", marginBottom: "4px" }}>Notes</div>
+            <div style={{ whiteSpace: "pre-line", marginBottom: "20px" }}>{data.notes}</div>
+          </>
+        )}
+        {data.terms && (
+          <>
+            <div style={{ fontWeight: "bold", marginBottom: "4px" }}>Terms & Conditions</div>
+            <div style={{ whiteSpace: "pre-line" }}>{data.terms}</div>
+          </>
+        )}
       </div>
     </div>
-
-    {/* ===== Notes & Terms ===== */}
-    <div className="mt-6 text-sm leading-relaxed">
-      <h3 className="font-semibold mb-1 text-gray-700">Notes</h3>
-      <p className="border border-gray-300 rounded p-2 bg-gray-50">
-        {data.notes || "Thank you for your business!"}
-      </p>
-
-      <h3 className="font-semibold mt-4 mb-1 text-gray-700">Terms & Conditions</h3>
-      <p className="border border-gray-300 rounded p-2 bg-gray-50">
-        {data.terms ||
-          "Payment is due within 30 days of the invoice date. Late payments may incur fees."}
-      </p>
-    </div>
-
-    {/* ===== Footer Branding ===== */}
-    <div className="text-center text-xs text-gray-500 mt-8 border-t pt-2">
-      <p>Generated via Ralakde Ltd — EU Quote Template</p>
-    </div>
-  </div>
-);
+  );
+};
 
 export default EUQuoteTemplate;
