@@ -50,7 +50,7 @@
 
 import axios from "axios";
 
-const API_BASE = "http://localhost:5000/api/templates"; // ✅ backend base URL
+const API_BASE = "https://pdfviewapp.onrender.com/api/templates"; // ✅ backend base URL
 
 // Helper function for blob (PDF download)
 const getBlob = async (url) => {
