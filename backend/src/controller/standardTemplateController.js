@@ -1,4 +1,4 @@
-import StandardTemplate from "../models/standardTemplate.js";
+import StandardTemplate from "../models/StandardTemplate.js";
 
 export const createStandardTemplate = async (req, res) => {
   try {
