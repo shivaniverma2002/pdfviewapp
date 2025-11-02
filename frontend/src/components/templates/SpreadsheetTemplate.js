@@ -8,7 +8,7 @@ const SpreadsheetTemplate = ({ data }) => {
     <div
       className="bg-white text-gray-800 mx-auto"
       style={{
-        width: "210mm",
+        width: "190mm",
         minHeight: "297mm",
         padding: "15mm 18mm",
         border: "1px solid #d1d5db",
@@ -21,6 +21,7 @@ const SpreadsheetTemplate = ({ data }) => {
         <div className="flex justify-between">
           {/* Company Info */}
           <div>
+            <img src="/logo.png" alt="Company Logo" className="h-20 mb-2" />
             <h1 className="font-bold text-base mb-1">{data.companyInfo?.name}</h1>
             <p>{data.companyInfo?.address}</p>
             <p>{data.companyInfo?.country}</p>
