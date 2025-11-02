@@ -6,7 +6,7 @@ const EUQuoteTemplate = ({ data }) => {
   return (
     <div
       style={{
-        width: "210mm",
+        width: "190mm",
         minHeight: "297mm",
         background: "#fff",
         color: "#000",
@@ -20,13 +20,7 @@ const EUQuoteTemplate = ({ data }) => {
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
         {/* Left Company Info */}
         <div style={{ width: "60%" }}>
-          {data.companyInfo?.logo && (
-            <img
-              src={data.companyInfo.logo}
-              alt="logo"
-              style={{ width: "150px", marginBottom: "10px" }}
-            />
-          )}
+          <img src="/logo.png" alt="Company Logo" className="h-20 mb-2" />
           <div style={{ fontWeight: "bold", fontSize: "14px", marginBottom: "2px" }}>
             {data.companyInfo?.name}
           </div>
