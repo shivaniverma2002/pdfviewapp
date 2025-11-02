@@ -1,38 +1,47 @@
-.App {
-  text-align: center;
+/* ---- Universal A4 Container ---- */
+.a4-container {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 10mm auto;
+  padding: 15mm;
+  background: white;
+  box-sizing: border-box;
+  overflow: hidden;
+  page-break-after: always;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Prevent extra white background box */
+body {
+  background: #f3f4f6;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+/* ---- Printing Rules ---- */
+@media print {
+  html, body {
+    width: 210mm;
+    background: white !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  .a4-container {
+    margin: 0 auto;
+    padding: 20mm;
+    width: 210mm;
+    min-height: 297mm !important;
+    page-break-after: always;
+    box-shadow: none;
+    overflow: visible;
+    box-shadow: none !important;
+    
   }
-  to {
-    transform: rotate(360deg);
+
+  /* Make sure every section starts cleanly on a new page if too long */
+  .page-break {
+    page-break-before: always;
+  }
+
+  .no-print {
+    display: none !important;
   }
 }
